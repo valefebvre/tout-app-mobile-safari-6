@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Camera access on mobile web!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <style type="text/css">
+            #container {
+                margin:0 auto;
+                padding:0;
+                width:200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <img src="tout.jpg" id="tout-logo" />
+            <p>Upload videos to Tout straight from your web browser!!</p>
+            
+            <form method="POST" action="https://api.tout.com/api/v1/touts">
+                <input type="file" name="tout[data]">
+                <br>
+                <input type="hidden" name="access_token" value="">
+                <br>
+                <textarea name="tout[text]">
+                </textarea>
+                <br>
+                <input type="submit" value="Submit">    
+            </form>
+        </div>
+        <p><a href="https://github.com/jeremiak/tout-app-mobile-safari-6">Source on GitHub</a></p>  
+    </body>
+</html>
