@@ -10,24 +10,50 @@
                 padding:0;
                 width:200px;
             }
+            div.message {
+                background-color:green;
+                border-radius:4px;
+                color:white;
+                display:none;
+                padding:5px 0;
+                text-align:center;
+                width:100%;
+            }
         </style>
     </head>
     <body>
         <div id="container">
             <img src="tout.jpg" id="tout-logo" />
+            <div class="message"><strong>Thanks for the Tout!</strong></div>
             <p>Upload videos to Tout straight from your web browser!!</p>
             
             <form method="POST" enctype="multipart/form-data" action="https://api.tout.com/api/v1/touts">
                 <input type="file" accept="video/*" name="tout[data]">
-                <br>
-                <input type="hidden" name="access_token" value="NEVERCOMMITTOKENS:)">
-                <br>
-                <textarea name="tout[text]">
-                </textarea>
-                <br>
-                <input type="submit" value="Submit">    
+                <br /><br />
+                <textarea name="tout[text]">Check out my awesome Tout!</textarea>
+                <br />
+                <input type="button" onClick="submitTout();" value="Submit">    
             </form>
         </div>
-        <p><a href="https://github.com/jeremiak/tout-app-mobile-safari-6">Source on GitHub</a></p>  
+        <p><a href="https://github.com/jeremiak/tout-app-mobile-safari-6">Source on GitHub</a></p>
+        <script type="text/javascript">
+            function submitTout(){
+                var token = 'NEVER-COMMIT-TOKENS :)';
+                var text = document.getElementsByName('tout[text]')[0].value;
+                var file = document.getElementsByName('tout[data]')[0].files[0];
+                
+                fd = new FormData();
+                fd.append('access_token', token);
+                fd.append('tout[text]', text);
+                fd.append('tout[data]', file);
+
+                req = new XMLHttpRequest();
+                req.open('POST', 'https://api.tout.com/api/v1/touts');
+                req.send(fd);
+
+                document.getElementsByClassName('message')[0].style.display = "block";
+
+            }  
+        </script>
     </body>
 </html>
